@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+# file: nokorexi.rb
+
+require 'nokogiri'
+require 'open-uri'
+require 'rexml/document'
+include REXML
+
+class Nokorexi
+
+  def initialize(buffer)
+    buffer = open(buffer, 'UserAgent' => 'Nokorexi').read if buffer[/^http/]
+    raw_doc = Nokogiri::HTML(buffer)
+    @doc = Document.new(raw_doc.xpath('html/body').to_xml)
+  end
+
+  def to_doc
+    @doc
+  end
+end
