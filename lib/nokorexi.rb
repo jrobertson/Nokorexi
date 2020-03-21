@@ -9,13 +9,18 @@ require 'rxfhelper'
 
 class Nokorexi
 
-  attr_reader :to_doc
+  attr_reader :to_doc, :to_s
 
-  def initialize(x, debug: false)
+  def initialize(x, noscript: true, debug: false)
+    
     s = RXFHelper.read(x).first[/.*<\/html>$/m]
+    
     raw_doc = Nokogiri::HTML(s.gsub("&nbsp;",' '))
-    raw_doc.xpath('//script').each(&:remove)
-    @to_doc = Rexle.new(raw_doc.xpath('html').to_xml, debug: debug)
+    raw_doc.xpath('//script').each(&:remove) if noscript
+    
+    @to_s = xml = raw_doc.xpath('html').to_xml
+    @to_doc = Rexle.new(xml, debug: debug)
+    
   end
   
 end
