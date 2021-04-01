@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'nokorexi'
-  s.version = '0.5.2'
+  s.version = '0.5.3'
   s.summary = 'nokorexi'
   s.authors = ['James Robertson']
   s.files = Dir['lib/nokorexi.rb']

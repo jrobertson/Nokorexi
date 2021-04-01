@@ -13,7 +13,9 @@ class Nokorexi
 
   def initialize(x, noscript: true, debug: false)
     
-    s = RXFHelper.read(x).first[/.*<\/html>$/m]
+    raws = RXFHelper.read(x).first
+    s = raws[/.*<\/html>$/m] || raws
+    puts 's: ' + s.inspect if debug
     
     raw_doc = Nokogiri::HTML(s.gsub("&nbsp;",' '))
     raw_doc.xpath('//script').each(&:remove) if noscript
