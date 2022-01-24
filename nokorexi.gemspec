@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'nokorexi'
-  s.version = '0.5.4'
+  s.version = '0.5.5'
   s.summary = 'Uses Nokogiri to produce valid XHTML for use as a Rexle document.'
   s.authors = ['James Robertson']
   s.files = Dir['lib/nokorexi.rb']
