@@ -4,7 +4,7 @@
 
 require 'nokogiri'
 require 'rexle'
-require 'rxfhelper'
+require 'rxfreader'
 
 
 class Nokorexi
@@ -14,7 +14,7 @@ class Nokorexi
   def initialize(x, noscript: true, noevents: true, nosvg: true,
                  nostyle: true, nolink: true, filter: false, debug: false)
 
-    raws = RXFHelper.read(x).first
+    raws = RXFReader.read(x).first
     s = raws[/.*<\/html>$/m] || raws
     puts 's: ' + s.inspect if debug
 
